@@ -4,6 +4,7 @@ import {
   getCurrentWalletConnected,
   mintNFT,
 } from "./util/interact.js";
+import detectEthereumProvider from '@metamask/detect-provider';
 
 const Minter = () => {
   const [walletAddress, setWallet] = useState("");
@@ -25,8 +26,10 @@ const Minter = () => {
     })();
   }, []);
 
-  function addWalletListener() {
-    if (window.ethereum) {
+  async function addWalletListener() {
+    const provider = await detectEthereumProvider();
+
+    if (provider) {
       window.ethereum.on("accountsChanged", (accounts) => {
         if (accounts.length > 0) {
           setWallet(accounts[0]);
