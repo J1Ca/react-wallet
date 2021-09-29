@@ -1,4 +1,4 @@
-import { pinJSONToIPFS } from "./pinata.js";
+// import { pinJSONToIPFS } from "./pinata.js";
 require("dotenv").config();
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const contractABI = require("../contract-abi.json");
@@ -31,7 +31,7 @@ export const connectWallet = async () => {
           <p>
             {" "}
             🦊{" "}
-            <a target="_blank" href={`https://metamask.io/download.html`}>
+            <a target="_blank" href={`https://metamask.io/download.html`} rel="noreferrer">
               You must install Metamask, a virtual Ethereum wallet, in your
               browser.
             </a>
@@ -73,7 +73,7 @@ export const getCurrentWalletConnected = async () => {
           <p>
             {" "}
             🦊{" "}
-            <a target="_blank" href={`https://metamask.io/download.html`}>
+            <a target="_blank" href={`https://metamask.io/download.html`} rel="noreferrer">
               You must install Metamask, a virtual Ethereum wallet, in your
               browser.
             </a>
@@ -84,9 +84,9 @@ export const getCurrentWalletConnected = async () => {
   }
 };
 
-async function loadContract() {
-  return new web3.eth.Contract(contractABI, contractAddress);
-}
+// async function loadContract() {
+//   return new web3.eth.Contract(contractABI, contractAddress);
+// }
 
 export const mintNFT = async (url, name, description, quantity) => {
   // if (url.trim() == "" || name.trim() == "" || description.trim() == "") {
