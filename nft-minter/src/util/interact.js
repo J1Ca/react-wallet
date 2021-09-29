@@ -1,4 +1,5 @@
 // import { pinJSONToIPFS } from "./pinata.js";
+import detectEthereumProvider from '@metamask/detect-provider';
 require("dotenv").config();
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const contractABI = require("../contract-abi.json");
@@ -7,7 +8,9 @@ const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
 
 export const connectWallet = async () => {
-  if (window.ethereum) {
+  const provider = await detectEthereumProvider();
+
+  if (provider) {
     try {
       const addressArray = await window.ethereum.request({
         method: "eth_requestAccounts",
@@ -43,9 +46,11 @@ export const connectWallet = async () => {
 };
 
 export const getCurrentWalletConnected = async () => {
-  if (window.ethereum) {
+  const provider = await detectEthereumProvider();
+
+  if (provider) {
     try {
-      const addressArray = await window.ethereum.request({
+      const addressArray = await provider.request({
         method: "eth_accounts",
       });
       if (addressArray.length > 0) {
