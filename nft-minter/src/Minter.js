@@ -5,7 +5,7 @@ import {
   mintNFT,
 } from "./util/interact.js";
 
-const Minter = (props) => {
+const Minter = () => {
   const [walletAddress, setWallet] = useState("");
   const [status, setStatus] = useState("");
 
@@ -14,13 +14,15 @@ const Minter = (props) => {
   const [url, setURL] = useState("");
   const [quantity, setQuantity] = useState("");
 
-  useEffect(async () => {
-    const { address, status } = await getCurrentWalletConnected();
+  useEffect(() => {
+    (async () => {
+      const { address, status } = await getCurrentWalletConnected();
 
-    setWallet(address);
-    setStatus(status);
+      setWallet(address);
+      setStatus(status);
 
-    addWalletListener();
+      addWalletListener();
+    })();
   }, []);
 
   function addWalletListener() {
@@ -39,7 +41,7 @@ const Minter = (props) => {
         <p>
           {" "}
           🦊{" "}
-          <a target="_blank" href={`https://metamask.io/download.html`}>
+          <a target="_blank" href={`https://metamask.io/download.html`} rel="noreferrer">
             You must install Metamask, a virtual Ethereum wallet, in your
             browser.
           </a>
