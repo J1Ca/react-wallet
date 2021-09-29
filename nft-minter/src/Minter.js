@@ -28,6 +28,7 @@ const Minter = () => {
 
   async function addWalletListener() {
     const provider = await detectEthereumProvider();
+    console.log('in minter:', provider);
 
     if (provider) {
       window.ethereum.on("accountsChanged", (accounts) => {

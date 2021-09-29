@@ -9,6 +9,7 @@ const web3 = createAlchemyWeb3(alchemyKey);
 
 export const connectWallet = async () => {
   const provider = await detectEthereumProvider();
+  console.log('in interact, connectWallet:', provider);
 
   if (provider) {
     try {
@@ -47,6 +48,7 @@ export const connectWallet = async () => {
 
 export const getCurrentWalletConnected = async () => {
   const provider = await detectEthereumProvider();
+  console.log('in interact, getCurrent:', provider);
 
   if (provider) {
     try {
